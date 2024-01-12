@@ -1,37 +1,49 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8"/>
-        <title>캐릭터 검색 v1.0</title>
-        <link rel="stylesheet" href="style.css">
-        <meta content="width=device-width, initial-scale=1" name="viewport"/>
-        <link rel="icon" href="Assets/icons/baramy_icon.png" type="image/png">
-    </head>
-    <body class="body">
-        <div class="cb-header">
-            <div class="logo">
-                <img src="https://assets-global.website-files.com/6597368de63a0bbbb65bb64e/6597407938e8ddfd49fbe7b0_brmy-logo.png" loading="lazy" alt="" class="logo-img"/>
-                <div class="logo-text">캐릭터 검색</div>
-            </div>
-            <div class="searchbar">
-                <div class="search-container">
+<html lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <title>캐릭터 검색 v1.0</title>
+    <link rel="stylesheet" href="style.css">
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="icon" href="Assets/icons/baramy_icon.png" type="image/png">
+</head>
+<body class="body">
+    <div class="cb-header">
+        <div class="logo">
+            <img src="https://assets-global.website-files.com/6597368de63a0bbbb65bb64e/6597407938e8ddfd49fbe7b0_brmy-logo.png" loading="lazy" alt="" class="logo-img"/>
+            <div class="logo-text">캐릭터 검색</div>
+        </div>
+        <div class="searchbar">
+            <div class="search-container">
                 <label for="characterName" class="sr-only">캐릭터:</label>
                 <input type="text" id="characterName" required placeholder="수행자명을 입력해주세요.">
+                
+                <!-- 서버 선택 추가 -->
+                <select id="serverSelect" class="server-select">
+                    <option value="아케인">아케인</option>
+                    <option value="크로아">크로아</option>
+                    <option value="엘리시움">엘리시움</option>
+                    <option value="루나">루나</option>
+                    <option value="스카니아">스카니아</option>
+                    <option value="유니온">유니온</option>
+                    <option value="제니스">제니스</option>
+                </select>
+                
                 <button onclick="fetchCharacterInfo()">조회</button>
-                </div>
             </div>
         </div>
-        <div class="cb-sub-header"></div>
-        <div class="cb-section1">
-        </div>
-        <div class="cb-sub-section"></div>
-        <div class="cb-section2">
-            
-        </div>
-        <div class="cb-footer">
-            <div class="copyright">@ 2024 - COPYRIGHT ALL RIGHT RESERVED.</div>
-            <div class="reference">Data based on NEXON Open API</div>
-        </div>
-        <script src="script.js"></script>
-    </body>
-                                          </html>
+    </div>
+    <div class="cb-sub-header"></div>
+    <div class="cb-section1">
+    </div>
+    <div class="cb-sub-section"></div>
+    <div class="cb-section2">
+        
+    </div>
+    <div class="cb-footer">
+        <div class="copyright">@ 2024 - COPYRIGHT ALL RIGHT RESERVED.</div>
+        <div class="reference">Data based on NEXON Open API</div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
