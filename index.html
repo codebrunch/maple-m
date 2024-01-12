@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>캐릭터 검색 v1.0</title>
+        <link rel="stylesheet" href="style.css">
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <link rel="icon" href="Assets/icons/baramy_icon.png" type="image/png">
+    </head>
+    <body class="body">
+        <div class="cb-header">
+            <div class="logo">
+                <img src="https://assets-global.website-files.com/6597368de63a0bbbb65bb64e/6597407938e8ddfd49fbe7b0_brmy-logo.png" loading="lazy" alt="" class="logo-img"/>
+                <div class="logo-text">캐릭터 검색</div>
+            </div>
+            <div class="searchbar">
+                <div class="search-container">
+                <label for="characterName" class="sr-only">캐릭터:</label>
+                <input type="text" id="characterName" required placeholder="수행자명을 입력해주세요.">
+                <button onclick="fetchCharacterInfo()">조회</button>
+                </div>
+            </div>
+        </div>
+        <div class="cb-sub-header"></div>
+        <div class="cb-section1">
+            <img src="https://assets-global.website-files.com/6597368de63a0bbbb65bb64e/659743c73ddd7ef7850f1711_brmy-background.png" loading="lazy" srcset="https://assets-global.website-files.com/6597368de63a0bbbb65bb64e/659743c73ddd7ef7850f1711_brmy-background-p-500.png 500w, https://assets-global.website-files.com/6597368de63a0bbbb65bb64e/659743c73ddd7ef7850f1711_brmy-background-p-800.png 800w, https://assets-global.website-files.com/6597368de63a0bbbb65bb64e/659743c73ddd7ef7850f1711_brmy-background-p-1080.png 1080w, https://assets-global.website-files.com/6597368de63a0bbbb65bb64e/659743c73ddd7ef7850f1711_brmy-background.png 1200w" alt="" sizes="100vw" class="section-background"/>
+            <div class="content-main">
+                <div class="w-layout-grid content-main-grid">
+                    <div id="w-node-f8f51fcd-5000-3e18-34ae-6b0f08eab7ef-b65bb653" class="main-leftbox">
+                        <div class="main-leftbox-wrap">
+                            <div class="char-img-box">
+                                <div class="mychar"></div>
+                            </div>
+                            <div id="w-node-_5a16140d-f06c-9be0-bd1d-c34a24056354-b65bb653" class="char-info-box">
+                                <div class="mychar-info1">
+                                    <div class="mychar-info1-upper">
+                                        <div class="mychar-title1"></div>
+                                        <div class="mychar-title2">
+                                            <div class="mychar-name1"></div>
+                                            <div class="mychar-server1"></div>
+                                            <div class="mychar-leftinfo1"></div>
+                                            <div class="mychar-reserved"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="char-box-rightmargin"></div>
+                        </div>
+                    </div>
+                    <div id="w-node-_7de0b969-e790-e529-233d-9d6171c6c0e8-b65bb653" class="mainrightbox">
+                        <div class="main-rightbox-wrap">
+                            <div id="w-node-_0a545248-25b6-96f2-5bbf-cf61534273cb-b65bb653" class="char-subinfo-box">
+                                <div class="char-subinfo1">
+                                    <div class="char-subinfo1-title">
+                                        <div class="char-subinfo1-title1">수행자명</div>
+                                        <div class="char-subinfo1-title2">서버</div>
+                                        <div class="char-subinfo1-title3">국적</div>
+                                        <div class="char-subinfo1-title4">생성일</div>
+                                    </div>
+                                    <div class="char-subinfo1-content">
+                                        <div class="char-subinfo1-content1"></div>
+                                        <div class="char-subinfo1-content2"></div>
+                                        <div class="char-subinfo1-content3"></div>
+                                        <div class="char-subinfo1-content4"></div>
+                                    </div>
+                                </div>
+                                <div class="char-subinfo2">
+                                    <div class="char-subinfo2-title">
+                                        <div class="char-subinfo2-title1">직업</div>
+                                        <div class="char-subinfo2-title2">승급</div>
+                                        <div class="char-subinfo2-title3">레벨</div>
+                                        <div class="char-subinfo2-title4">EXP</div>
+                                    </div>
+                                    <div class="char-subinfo2-content">
+                                        <div class="char-subinfo2-content1"></div>
+                                        <div class="char-subinfo2-content2"></div>
+                                        <div class="char-subinfo2-content3"></div>
+                                        <div class="char-subinfo2-content4"></div>
+                                    </div>
+                                </div>
+                                <div class="char-subinfo3">
+                                    <div class="char-subinfo3-title">
+                                        <div class="char-subinfo3-title1">장착칭호</div>
+                                        <div class="char-subinfo3-title2">표시칭호</div>
+                                        <div class="char-subinfo3-title3">특수칭호</div>
+                                        <div class="char-subinfo3-title4">공성칭호</div>
+                                    </div>
+                                    <div class="char-subinfo3-content">
+                                        <div class="char-subinfo3-content1"></div>
+                                        <div class="char-subinfo3-content2"></div>
+                                        <div class="char-subinfo3-content3"></div>
+                                        <div class="char-subinfo3-content4"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="w-node-_875557e5-3953-7fb4-4f71-8741803bb2dc-b65bb653" class="char-tag-box">
+                                <div class="char-server-history-title">서버 이력 </div>
+                                <div id="result"></div>
+                                <div class="char-tag-title">최근 획득 칭호</div>
+                                <div class="char-tag-content"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cb-sub-section"></div>
+        <div class="cb-section2">
+            
+        </div>
+        <div class="cb-footer">
+            <div class="copyright">@ 2024 - COPYRIGHT ALL RIGHT RESERVED.</div>
+            <div class="reference">Data based on NEXON Open API</div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+                                          </html>
