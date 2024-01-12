@@ -14,6 +14,22 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // 장비 정보를 업데이트하는 함수 정의
+    function updateEquipmentInfo(data) {
+        const equipmentInfoContainer = document.querySelector('.cb-section2');
+
+        // 예시: 가져온 장비 정보를 사용하여 DOM 엘리먼트를 업데이트
+        if (data.item_equipment && data.item_equipment.length > 0) {
+            const equipmentList = data.item_equipment.map(item => {
+                return `<p>${item.item_equipment_page_name} - ${item.item_name}</p>`;
+            }).join('');
+
+            equipmentInfoContainer.innerHTML = equipmentList;
+        } else {
+            equipmentInfoContainer.innerHTML = '<p>장비 정보가 없습니다.</p>';
+        }
+    }
+
     function fetchCharacterInfo() {
         const apiKey = 'test_7bd80f4de26d58e5774b999a4fa19bfeedcbecdcd4e10ae62c93010860e37a6ba15bcd2f39f06a91bca84af63852f7c1';
         const characterName = characterNameInput.value;
@@ -38,22 +54,6 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(error => {
                 console.error('정보를 가져오는 도중 에러 발생:', error);
             });
-    }
-
-    // 장비 정보를 업데이트하는 함수 정의
-    function updateEquipmentInfo(data) {
-        const equipmentInfoContainer = document.querySelector('.cb-section2');
-
-        // 예시: 가져온 장비 정보를 사용하여 DOM 엘리먼트를 업데이트
-        if (data.item_equipment && data.item_equipment.length > 0) {
-            const equipmentList = data.item_equipment.map(item => {
-                return `<p>${item.item_equipment_page_name} - ${item.item_name}</p>`;
-            }).join('');
-
-            equipmentInfoContainer.innerHTML = equipmentList;
-        } else {
-            equipmentInfoContainer.innerHTML = '<p>장비 정보가 없습니다.</p>';
-        }
     }
 
     const fetchButton = document.querySelector('button');
