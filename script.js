@@ -1,6 +1,3 @@
-이해했습니다. 주어진 예시를 기반으로 검색 결과를 가져와서 DOM을 업데이트하는 코드를 작성하겠습니다.
-
-```javascript
 document.addEventListener('DOMContentLoaded', function () {
     const characterNameInput = document.getElementById('characterName');
     const serverSelect = document.getElementById('serverSelect');
@@ -62,6 +59,3 @@ document.addEventListener('DOMContentLoaded', function () {
     const fetchButton = document.querySelector('button');
     fetchButton.addEventListener('click', fetchCharacterInfo);
 });
-```
-
-이 코드는 먼저 캐릭터 ID를 가져온 후, 해당 ID를 기반으로 장비 정보를 가져와서 DOM을 업데이트합니다. 가져온 장비 정보는 `.cb-section2`에 나타나게 됩니다. 주의: "YOUR_API_KEY"는 실제 Nexon API 키로 대체해야 합니다.
