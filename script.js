@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function fetchCharacterInfo() {
-        const apiKey = 'YOUR_API_KEY';
+        const apiKey = 'test_7bd80f4de26d58e5774b999a4fa19bfeedcbecdcd4e10ae62c93010860e37a6ba15bcd2f39f06a91bca84af63852f7c1';
         const characterName = characterNameInput.value;
         const server = serverSelect.value;
 
