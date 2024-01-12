@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const characterNameInput = document.getElementById('characterName');
     const serverSelect = document.getElementById('serverSelect');
     const characterResult = document.getElementById('characterResult');
+    const equipmentInfoContainer = document.querySelector('.cb-section2');
 
     characterNameInput.addEventListener('focus', function () {
         if (characterNameInput.value === '수행자명을 입력해주세요.') {
@@ -28,9 +29,23 @@ document.addEventListener('DOMContentLoaded', function () {
             <p>성별: ${data.character_gender}</p>
             <p>경험치: ${data.character_exp}</p>
             <p>레벨: ${data.character_level}</p>
+            <p>OCID: ${data.ocid}</p> <!-- 이 부분을 추가했습니다. -->
         `;
 
         characterInfoContainer.innerHTML = characterInfo;
+    }
+
+    function updateEquipmentInfo(data) {
+        // 장비 정보가 있는 경우에만 업데이트
+        if (data.item_equipment && data.item_equipment.length > 0) {
+            const equipmentList = data.item_equipment.map(item => {
+                return `<p>${item.item_equipment_page_name} - ${item.item_name}</p>`;
+            }).join('');
+
+            equipmentInfoContainer.innerHTML = equipmentList;
+        } else {
+            equipmentInfoContainer.innerHTML = '<p>장비 정보가 없습니다.</p>';
+        }
     }
 
     function fetchCharacterInfo() {
@@ -43,12 +58,15 @@ document.addEventListener('DOMContentLoaded', function () {
         fetch(idApiUrl)
             .then(response => response.json())
             .then(idData => {
-                const characterApiUrl = `https://open.api.nexon.com/maplestorym/v1/character/basic?ocid=${idData.ocid}&apiKey=${apiKey}`;
-                return fetch(characterApiUrl);
+                // OCID를 화면에 표시
+                updateCharacterInfo(idData);
+
+                const equipmentApiUrl = `https://open.api.nexon.com/maplestorym/v1/character/item-equipment?ocid=${idData.ocid}&apiKey=${apiKey}`;
+                return fetch(equipmentApiUrl);
             })
             .then(response => response.json())
-            .then(characterData => {
-                updateCharacterInfo(characterData);
+            .then(equipmentData => {
+                updateEquipmentInfo(equipmentData);
             })
             .catch(error => {
                 console.error('정보를 가져오는 도중 에러 발생:', error);
