@@ -26,19 +26,23 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        const idApiUrl = `https://open.api.nexon.com/maplestorym/v1/character/search?character_name=${characterName}&server=${server}&apiKey=${apiKey}`;
+        const searchApiUrl = `https://open.api.nexon.com/maplestorym/v1/character/search?character_name=${characterName}&server=${server}&apiKey=${apiKey}`;
 
-        fetch(idApiUrl)
+        fetch(searchApiUrl)
             .then(response => response.json())
             .then(idData => {
-                updateCharacterInfo(idData);
+                // Extracting ocid from the response
+                const ocid = idData.ocid;
 
-                const equipmentApiUrl = `https://open.api.nexon.com/maplestorym/v1/character/item-equipment?ocid=${idData.ocid}&apiKey=${apiKey}`;
-                return fetch(equipmentApiUrl);
+                // Use ocid to fetch additional information
+                const idApiUrl = `https://open.api.nexon.com/maplestorym/v1/id?ocid=${ocid}&apiKey=${apiKey}`;
+
+                return fetch(idApiUrl);
             })
             .then(response => response.json())
-            .then(equipmentData => {
-                updateEquipmentInfo(equipmentData);
+            .then(characterInfo => {
+                // Handle the additional character information
+                console.log(characterInfo);
             })
             .catch(error => {
                 console.error('정보를 가져오는 도중 에러 발생:', error);
