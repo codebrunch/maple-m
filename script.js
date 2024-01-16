@@ -46,16 +46,37 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const ocid = idData.ocid;
             console.log(ocid);
-            /*
-            const idApiUrl = `https://open.api.nexon.com/maplestorym/v1/id?ocid=${ocid}&apiKey=${apiKey}`;
 
-            const idResponse = await fetch(idApiUrl);
-            const characterInfo = await idResponse.json();
-            */
-            // 이제 characterInfo 변수에 원하는 정보가 들어있습니다.
-            //console.log(characterInfo);
+            // 다른 url에 ocid를 이용해서 response를 받아오는 함수 호출
+            await fetchAdditionalInfo(ocid, apiKey);
+
         } catch (error) {
             console.error('정보를 가져오는 도중 에러 발생:', error);
+        }
+    }
+    
+    async function fetchAdditionalInfo(ocid, cfgn) {
+        try {
+            // 다른 url에 ocid를 이용해서 response를 받아오는 코드 작성
+            const charBasicUrl = `https://open.api.nexon.com/maplestorym/v1/character/basic?ocid=${ocid}`;
+            const charBasicResponse = await fetch(charBasicUrl, {
+                headers: {
+                    "x-nxopen-api-key": cfgn,
+                },
+            });
+    
+            const charBasicData = await charBasicResponse.json();
+            
+            // 받아온 데이터 활용 예시
+            console.log("캐릭터 기본 정보:", charBasicData);
+    
+            // 추가 정보를 활용하는 코드 작성
+            // ...
+    
+        } catch (error) {
+            console.error('캐릭터 추가 정보를 가져오는 도중 에러 발생:', error);
+            // 에러가 발생한 경우, 이에 대한 처리를 할 수도 있습니다.
+            throw error; // 에러를 호출한 곳으로 전파
         }
     }
 });
