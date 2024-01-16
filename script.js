@@ -59,16 +59,44 @@ document.addEventListener('DOMContentLoaded', function () {
         try {
             // 다른 url에 ocid를 이용해서 response를 받아오는 코드 작성
             const charBasicUrl = `https://open.api.nexon.com/maplestorym/v1/character/basic?ocid=${ocid}`;
+            const equipItemUrl = `https://open.api.nexon.com/maplestorym/v1/character/item-equipment?ocid=${ocid}`;
+            const statInfoUrl = `https://open.api.nexon.com/maplestorym/v1/character/stat?ocid=${ocid}`;
+            const guildInfoUrl = `https://open.api.nexon.com/maplestorym/v1/character/guild?ocid=${ocid}`;
+
             const charBasicResponse = await fetch(charBasicUrl, {
+                headers: {
+                    "x-nxopen-api-key": cfgn,
+                },
+            });
+
+            const equipItemResponse = await fetch(equipItemUrl, {
+                headers: {
+                    "x-nxopen-api-key": cfgn,
+                },
+            });
+
+            const statInfoResponse = await fetch(statInfoUrl, {
+                headers: {
+                    "x-nxopen-api-key": cfgn,
+                },
+            });
+
+            const guildInfoResponse = await fetch(guildInfoUrl, {
                 headers: {
                     "x-nxopen-api-key": cfgn,
                 },
             });
     
             const charBasicData = await charBasicResponse.json();
+            const equipItemData = await equipItemResponse.json();
+            const statInfoData = await statInfoResponse.json();
+            const guildInfoData = await guildInfoResponse.json();
             
             // 받아온 데이터 활용 예시
             console.log("캐릭터 기본 정보:", charBasicData);
+            console.log("캐릭터 아이템 정보:", equipItemData);
+            console.log("캐릭터 스탯 정보:", statInfoData);
+            console.log("캐릭터 길드 정보:", guildInfoData);
     
             // 추가 정보를 활용하는 코드 작성
             // ...
