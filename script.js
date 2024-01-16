@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     const fetchButton = document.querySelector('button');
-    fetchButton.addEventListener('click', fetchCharacterInfo); // 버튼 클릭 시 fetchCharacterInfo 함수 호출
+    fetchButton.addEventListener('click', fetchCharacterInfo);
 
     async function fetchCharacterInfo() {
         const apiKey = 'test_7bd80f4de26d58e5774b999a4fa19bfeedcbecdcd4e10ae62c93010860e37a6ba15bcd2f39f06a91bca84af63852f7c1';
@@ -32,9 +32,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const searchApiUrl = `https://open.api.nexon.com/maplestorym/v1/id?character_name=${characterName}&world_name=${server}`;
 
         try {
-            const response = await fetch(url, {
+            const response = await fetch(searchApiUrl, {
                 headers: {
-                    "x-nxopen-api-key": baramyconfig,
+                    "x-nxopen-api-key": apiKey,
                 },
             });
 
