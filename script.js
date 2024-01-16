@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    const fetchButton = document.querySelector('button');
+    const fetchButton = document.getElementById('fetchButton');
     fetchButton.addEventListener('click', fetchCharacterInfo);
 
     async function fetchCharacterInfo() {
